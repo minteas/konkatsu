@@ -457,13 +457,13 @@ footer { background: var(--deep); padding: 48px 24px 36px; text-align: center; }
   <div class="detail-box">
     <div class="detail-row"><div class="detail-th">日時</div><div class="detail-td">2026年7月19日（日）13:00〜15:00</div></div>
     <div class="detail-row"><div class="detail-th">会場</div><div class="detail-td">パーソナルジム ミンティーズ</div></div>
-    <div class="detail-row"><div class="detail-th">対象</div><div class="detail-td">30〜45歳の婚活を考えている男女</div></div>
-    <div class="detail-row"><div class="detail-th">定員</div><div class="detail-td">男性8名 ／ 女性8名（先着順）</div></div>
+    <div class="detail-row"><div class="detail-th">対象</div><div class="detail-td">35歳〜45歳の婚活を考えている男女</div></div>
+    <div class="detail-row"><div class="detail-th">定員</div><div class="detail-td">男性6名 ／ 女性6名（先着順）</div></div>
     <div class="detail-row">
       <div class="detail-th">参加費</div>
       <div class="detail-td">
-        <span class="price-tag">男性 4,000<small>円（税込）</small></span>
-        <span class="price-tag">女性 2,000<small>円（税込）</small></span>
+        <span class="price-tag">男性 11,000<small>円（税込）</small></span>
+        <span class="price-tag">女性 5,500<small>円（税込）</small></span>
       </div>
     </div>
     <div class="detail-row"><div class="detail-th">含まれるもの</div><div class="detail-td">ミネラルウォーター / マッチングサポート</div></div>
@@ -543,7 +543,7 @@ footer { background: var(--deep); padding: 48px 24px 36px; text-align: center; }
     btn.textContent = '送信中...';
     btn.disabled = true;
 
-    var body = JSON.stringify({name:name, age:age, gender:gender, date:date, birth:birth, address:address, tel:tel, email:email});
+    var body = JSON.stringify({name:name, age:age, gender:gender, date:date, birth:birth, address:address, tel:String(tel), email:email});
 
     fetch('https://script.google.com/macros/s/AKfycbyCPxkOOeVYEaomh7pgbQfLJ5wQ_J6cRb6siqWkTFkO-Q_ZSH25678LpuERikPAQNY5ug/exec', {
       method: 'POST',
