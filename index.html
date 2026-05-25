@@ -551,10 +551,12 @@ footer { background: var(--deep); padding: 48px 24px 36px; text-align: center; }
       headers: {'Content-Type': 'application/json'},
       body: body
     }).then(function() {
+      var gender = document.getElementById('f-gender').value;
+      var payUrl = gender === '男性' ? 'https://buy.stripe.com/6oU4gs9Lv3ungun1P58g001' : 'https://buy.stripe.com/bJe6oA8Hr7KD1zt3Xd8g002';
       msg.style.display = 'block';
       msg.style.background = 'rgba(184,151,90,0.2)';
       msg.style.color = '#D4B47A';
-      msg.textContent = '申し込みを受け付けました！ありがとうございます。';
+      msg.innerHTML = '申し込みを受け付けました！ありがとうございます。<br><br><a href="' + payUrl + '" target="_blank" style="display:block;background:#B8975A;color:#fff;padding:16px;text-align:center;font-size:15px;letter-spacing:0.15em;text-decoration:none;margin-top:12px;">参加費のお支払いはこちら →</a>';
       btn.style.display = 'none';
     }).catch(function() {
       msg.style.display = 'block';
