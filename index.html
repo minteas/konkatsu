@@ -320,14 +320,13 @@ footer { background: var(--deep); padding: 48px 24px 36px; text-align: center; }
 
 <!-- STICKY BAR -->
 <div class="sticky-bar" id="stickyBar">
-  <p>次回開催：7月19日(日)<br>残席わずか</p>
-  <button class="btn-sticky" onclick="document.getElementById('entry').scrollIntoView({behavior:'smooth'})">今すぐ申し込む</button>
+  <p style="color:rgba(255,255,255,0.8);font-size:13px;letter-spacing:0.05em;">7月19日（日）開催　申し込み受付終了</p>
 </div>
 
 <!-- HEADER -->
 <header>
   <div class="logo">ミンティーズ<span>パーソナルジム ミンティーズ</span></div>
-  <button class="header-cta" onclick="document.getElementById('entry').scrollIntoView({behavior:'smooth'})">参加申し込み</button>
+  <span style="font-size:11px;letter-spacing:0.1em;color:var(--gold);border:1px solid rgba(184,151,90,0.4);padding:8px 14px;">受付終了</span>
 </header>
 
 <!-- HERO -->
@@ -568,77 +567,19 @@ footer { background: var(--deep); padding: 48px 24px 36px; text-align: center; }
 
 <!-- CTA -->
 <section class="cta-section" id="entry">
-  <div class="urgency-tag"><div class="urgency-dot"></div>7/19（日）— 残席 女性3名 ／ 男性2名</div>
-  <h2 class="cta-catch">「運動苦手」でも「話すの苦手」でも大丈夫。<small>笑っているうちに、仲良くなっています。</small></h2>
-  <p class="cta-note">申し込みは2分で完了。参加確定後にご案内メールをお送りします。</p>
-  <div class="cta-form">
-    <div class="form-row-2">
-      <div class="form-group"><label>お名前</label><input type="text" id="f-name" placeholder="例：田中"></div>
-      <div class="form-group"><label>年齢</label><input type="text" id="f-age" placeholder="例：35"></div>
-    </div>
-    <div class="form-group"><label>性別</label><select id="f-gender"><option value="">選択</option><option>男性</option><option>女性</option></select></div>
-    <div class="form-group"><label>生年月日</label><input type="text" id="f-birth" placeholder="例：1990/01/15"></div>
-    <div class="form-group"><label>住所（市区町村）</label><input type="text" id="f-address" placeholder="例：渋谷区"></div>
-    <div class="form-group"><label>電話番号</label><input type="tel" id="f-tel" placeholder="例：090-1234-5678"></div>
-    <div class="form-group"><label>メールアドレス</label><input type="email" id="f-email" placeholder="minteas@example.com"></div>
-    <button class="btn-submit" id="submitBtn" onclick="submitForm()">参加を申し込む →</button>
-    <div id="form-msg" style="display:none;margin-top:16px;padding:16px;text-align:center;font-size:13px;letter-spacing:0.1em;border-radius:2px;"></div>
+  <div style="padding:20px 0 8px;">
+    <div style="display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);padding:10px 28px;font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:0.2em;margin-bottom:24px;">7月19日（日）開催</div>
   </div>
-  <script>
-  function submitForm() {
-    var name   = document.getElementById('f-name').value.trim();
-    var age    = document.getElementById('f-age').value.trim();
-    var gender = document.getElementById('f-gender').value;
-    var date   = '7月19日（日）';
-    var birth   = document.getElementById('f-birth').value.trim();
-    var address = document.getElementById('f-address').value.trim();
-    var tel     = document.getElementById('f-tel').value.trim();
-    var email   = document.getElementById('f-email').value.trim();
-    var msg    = document.getElementById('form-msg');
-    var btn    = document.getElementById('submitBtn');
-
-    msg.style.display = 'none';
-
-    if (!name || !age || !gender || !birth || !address || !tel || !email) {
-      msg.style.display = 'block';
-      msg.style.background = 'rgba(224,90,90,0.15)';
-      msg.style.color = '#ff8080';
-      msg.textContent = 'すべての項目を入力してください。';
-      return;
-    }
-
-    btn.textContent = '送信中...';
-    btn.disabled = true;
-
-    var body = JSON.stringify({name:name, age:age, gender:gender, date:date, birth:birth, address:address, tel:String(tel), email:email});
-
-    fetch('https://script.google.com/macros/s/AKfycbyCPxkOOeVYEaomh7pgbQfLJ5wQ_J6cRb6siqWkTFkO-Q_ZSH25678LpuERikPAQNY5ug/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: body
-    }).then(function() {
-      var gender = document.getElementById('f-gender').value;
-      var payUrl = gender === '男性' ? 'https://buy.stripe.com/6oU4gs9Lv3ungun1P58g001' : 'https://buy.stripe.com/bJe6oA8Hr7KD1zt3Xd8g002';
-      msg.style.display = 'block';
-      msg.style.background = 'rgba(184,151,90,0.2)';
-      msg.style.color = '#D4B47A';
-      msg.textContent = '申し込みを受け付けました！参加費のお支払いページに移動します...';
-      btn.style.display = 'none';
-      setTimeout(function() {
-        window.location.href = payUrl;
-      }, 2000);
-    }).catch(function() {
-      msg.style.display = 'block';
-      msg.style.background = 'rgba(224,90,90,0.15)';
-      msg.style.color = '#ff8080';
-      msg.textContent = 'エラーが発生しました。もう一度お試しください。';
-      btn.textContent = '参加を申し込む →';
-      btn.disabled = false;
-    });
-  }
-  </script>
-  <p class="cta-privacy">ご入力いただいた情報は当イベントの運営目的のみに使用します。</p>
+  <h2 class="cta-catch" style="font-size:clamp(24px,7vw,40px);">おかげさまで<br>満員御礼となりました。</h2>
+  <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:2;margin:20px 0 32px;letter-spacing:0.05em;">
+    たくさんのお申し込みをいただきありがとうございました。<br>
+    次回開催の情報は公式LINEにてお知らせします。
+  </p>
+  <div style="max-width:400px;margin:0 auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:28px 24px;">
+    <p style="font-size:13px;color:rgba(255,255,255,0.6);letter-spacing:0.1em;margin-bottom:16px;">次回開催のご案内を受け取る</p>
+    <div style="background:var(--gold);color:#fff;padding:16px;font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:0.15em;cursor:pointer;text-align:center;">公式LINEを友だち追加する</div>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px;line-height:1.8;">次回開催情報・特典情報をいち早くお届けします</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
